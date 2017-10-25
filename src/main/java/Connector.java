@@ -1,10 +1,6 @@
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- * Created by shjoshi on 8/31/2017.
- */
 public class Connector {
 public static Connection getConnection(){
     Connection connection =null;

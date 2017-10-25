@@ -1,15 +1,11 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.SQLException;
-import java.util.List;
-
 public class CompareAccount {
 
-    public int dataTable(WebDriver driver, String test) throws SQLException, InterruptedException {
+    public int dataTable(WebDriver driver, String test) {
         WebDriverWait wait = new WebDriverWait(driver, 1000);
         String applicationNo;
         int appCount=0;

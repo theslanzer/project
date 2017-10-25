@@ -2,8 +2,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import sun.plugin2.message.Message;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -15,10 +13,10 @@ import static org.openqa.selenium.By.xpath;
 
 public class Automation {
     public WebDriver driver;
+    JFrame j =new JFrame();
 
     @Test
     public void login() throws SQLException {
-        JFrame j =new JFrame();
         JTextField usrname = new JTextField(5);
         JPasswordField passwrd = new JPasswordField(5);
         String[] type = { "Active", "Termed" };
@@ -63,12 +61,13 @@ public class Automation {
                                 driver.close();
                             }
                         } else {
-                            status = "Id not found";
+                            status = "Dashboard verification failed!";
                             String sql1 = "UPDATE test.login SET test =? where id=?;";
                             PreparedStatement pst1 = con.prepareStatement(sql1);
                             pst1.setString(1, status);
                             pst1.setInt(2, id);
                             pst1.execute();
+                            driver.close();
                         }
                     } else {
                         status = "Login failed!";
@@ -102,7 +101,7 @@ public class Automation {
             }
             else {
                 flag=false;
-                out.println("Dashboard verification failed!!");
+                JOptionPane.showMessageDialog(j,"   Dashboard verification failed!","Alert",JOptionPane.WARNING_MESSAGE);
             }
         }catch (Exception e){
             flag =false;

@@ -4,7 +4,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class AccountVerification {
 
@@ -49,15 +48,12 @@ public class AccountVerification {
                     } else {
                         a = "Application verification Failed for termed accounts!";
                     }
-                    System.out.println("--**Comparing Complete**--");
+                    System.out.println("**Comparing Complete**");
                 }
             }
         else{
                     a = "Not logged-in!!";
                     }
-            }
-        catch (SQLException e) {
-            e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

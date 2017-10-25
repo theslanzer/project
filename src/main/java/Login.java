@@ -2,9 +2,9 @@ import java.sql.*;
 import java.text.ParseException;
 
 class Login {
-    String username;
-    String status;
-    java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+    private String username;
+    private String status;
+    private java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 
     private String getUsername() {
         return username;
@@ -45,7 +45,7 @@ class Login {
                 last_insert_id=rs.getInt(1);
             }
         }catch(Exception e){
-            System.out.println("SQL incorrect");
+            System.out.println("SQL Statement error!!");
             e.printStackTrace();
         }
         return last_insert_id;
