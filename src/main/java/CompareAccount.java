@@ -9,17 +9,25 @@ import java.util.List;
 
 public class CompareAccount {
 
-    public int dataTable(WebDriver driver) throws SQLException, InterruptedException {
+    public int dataTable(WebDriver driver, String test) throws SQLException, InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 1000);
         String applicationNo;
         int appCount=0;
-        Thread.sleep(2000);
-        int rowCount = driver.findElements(By.xpath("//table[@st-table='displayedTermedCollection']/tbody/tr[@class='animate ng-scope']")).size();
+        String table;
+        if(test.equals("Active")){
+            table="ActiveCollection";
+        }
+        else{
+            table="TermedCollection";
+        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@st-safe-src='TermedCollection']//*[@id=\"trAccountDetails\"]")));
+        int rowCount = driver.findElements(By.xpath("//table[@st-safe-src='"+table+"']//*[@id=\"trAccountDetails\"]")).size();
         System.out.println("Row count is: " +rowCount);
         for(int i=1; i<=rowCount; i++){
-            applicationNo= driver.findElement(By.xpath("(//*[@id=\"trAccountDetails\"]/td[4])["+i+"]")).getText();
+            applicationNo= driver.findElement(By.xpath("(//table[@st-safe-src='"+table+"']//*[@id=\"trAccountDetails\"]/td[4])["+i+"]")).getText();
             appCount+= Integer.parseInt(applicationNo);
         }
         return appCount;
+
     }
 }

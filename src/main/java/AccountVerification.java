@@ -14,7 +14,7 @@ public class AccountVerification {
         CompareAccount compareAccount = new CompareAccount();
         try {
             Connection con = Connector.getConnection();
-            String sql = "select * from test.login WHERE id=?;";
+            String sql = "SELECT * FROM test.login WHERE id=?;";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
@@ -22,7 +22,7 @@ public class AccountVerification {
                 if (test.equals("Active")) {
                     driver.findElement(By.xpath("//*[@id=\"top\"]/div/nav/div[4]/ul[1]/li[2]/a")).click();
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"trAccountDetails\"]/td[4]/a/span")));
-                    int dataCount = compareAccount.dataTable(driver);
+                    int dataCount = compareAccount.dataTable(driver,test);
                     driver.findElement(By.xpath("//*[@id=\"top\"]/div/nav/div[4]/ul[1]/li[5]/a")).click();
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"activeAccountManagement\"]/div[2]/div/span")));
                     int count = Integer.parseInt(driver.findElement(By.xpath("//*[@id=\"activeAccountManagement\"]/div[2]/div/span")).getText());
@@ -38,7 +38,7 @@ public class AccountVerification {
                     driver.findElement(By.xpath("//*[@id=\"top\"]/div/nav/div[4]/ul[1]/li[2]/a")).click();
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"ng-app\"]/div[2]/div[3]/ul/li[2]/a"))).click();
                     Thread.sleep(2000);
-                    int dataCount = compareAccount.dataTable(driver);
+                    int dataCount = compareAccount.dataTable(driver,test);
                     driver.findElement(By.xpath("//*[@id=\"top\"]/div/nav/div[4]/ul[1]/li[5]/a")).click();
                     Thread.sleep(2000);
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"ng-app\"]/div[2]/div[1]/div[4]/div/ul/li[2]/a"))).click();
