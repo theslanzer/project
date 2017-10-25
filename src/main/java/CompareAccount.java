@@ -20,7 +20,7 @@ public class CompareAccount {
         else{
             table="TermedCollection";
         }
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@st-safe-src='TermedCollection']//*[@id=\"trAccountDetails\"]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@st-safe-src='"+table+"']//*[@id=\"trAccountDetails\"]")));
         int rowCount = driver.findElements(By.xpath("//table[@st-safe-src='"+table+"']//*[@id=\"trAccountDetails\"]")).size();
         System.out.println("Row count is: " +rowCount);
         for(int i=1; i<=rowCount; i++){

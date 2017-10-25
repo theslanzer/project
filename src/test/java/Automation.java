@@ -28,6 +28,7 @@ public class Automation {
         myPanel.add(usrname);
         myPanel.add(new JLabel("Pasword:"));
         myPanel.add(passwrd);
+        myPanel.add(new JLabel("Account to be tested:"));
         myPanel.add(choices);
         int option= JOptionPane.showConfirmDialog(null, myPanel,"Please Enter Username and Password", JOptionPane.OK_CANCEL_OPTION);
 
@@ -35,7 +36,7 @@ public class Automation {
             File file = new File("D:\\\\SW\\\\chromedriver_win32\\\\chromedriver.exe");
             setProperty("webdriver.chrome.driver", file.getAbsolutePath());
             driver = new ChromeDriver();
-            String status = null;
+            String status;
                 Connection con = Connector.getConnection();
                 try {
                     driver.manage().window().maximize();
@@ -87,8 +88,8 @@ public class Automation {
         }
     }
 
-    public boolean verifyPage() throws InterruptedException {
-        boolean flag =false;
+    private boolean verifyPage() throws InterruptedException {
+        boolean flag;
         try {
             Thread.sleep(5000);
             if (driver.findElement(By.className("clearfix")).isDisplayed()
