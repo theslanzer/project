@@ -5,9 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class AccountVerification {
+class AccountVerification {
 
-    public String accountTest(int id, WebDriver driver,String test) throws Exception {
+    String accountTest(int id, WebDriver driver, String test) throws Exception {
         WebDriverWait wait = new WebDriverWait(driver, 1000);
         String a=null;
         CompareAccount compareAccount = new CompareAccount();

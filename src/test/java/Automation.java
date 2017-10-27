@@ -12,8 +12,8 @@ import static java.lang.System.*;
 import static org.openqa.selenium.By.xpath;
 
 public class Automation {
-    public WebDriver driver;
-    JFrame j =new JFrame();
+    private WebDriver driver;
+    private JFrame j =new JFrame();
 
     @Test
     public void login() throws SQLException {
