@@ -19,7 +19,7 @@ public class Automation {
     public void login() throws SQLException {
         JTextField usrname = new JTextField(5);
         JPasswordField passwrd = new JPasswordField(5);
-        String[] type = { "Active", "Termed" };
+        String[] type = { "Active", "Termed", "Email" };
         JComboBox choices =new JComboBox(type);
         JPanel myPanel = new JPanel(new GridLayout(0, 1, 2, 2));
         myPanel.add(new JLabel("Username:"));
@@ -50,23 +50,24 @@ public class Automation {
                         Login val = new Login();
                         int id = val.validation(usrname.getText(), status);
                         if (id > 0) {
-                            if (verifyPage()) {
-                                AccountVerification acc = new AccountVerification();
-                                String stat = acc.accountTest(id, driver,test);
-                                String sql1 = "UPDATE test.login SET test =? where id=?;";
-                                PreparedStatement pst1 = con.prepareStatement(sql1);
-                                pst1.setString(1, stat);
-                                pst1.setInt(2, id);
-                                pst1.execute();
+                            if(test.equals("Active")||test.equals("Termed")) {
+                                if (verifyPage()) {
+                                    AccountVerification acc = new AccountVerification();
+                                    String stat = acc.accountTest(id, driver, test);
+                                    val.sqlLog(stat,id);
+                                    driver.close();
+                                }
+                            }
+                            else{
+                                Email email=new Email();
+                                String stat=email.mailCheck(usrname.getText(),driver);
+                                System.out.println(stat);
+                                val.sqlLog(stat,id);
                                 driver.close();
                             }
                         } else {
                             status = "Dashboard verification failed!";
-                            String sql1 = "UPDATE test.login SET test =? where id=?;";
-                            PreparedStatement pst1 = con.prepareStatement(sql1);
-                            pst1.setString(1, status);
-                            pst1.setInt(2, id);
-                            pst1.execute();
+                            val.sqlLog(status,id);
                             driver.close();
                         }
                     } else {

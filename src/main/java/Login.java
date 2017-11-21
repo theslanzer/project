@@ -50,4 +50,14 @@ class Login {
         }
         return last_insert_id;
     }
+
+    public void sqlLog (String stat,int id) throws SQLException {
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE test.login SET test =? WHERE id=?;";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, stat);
+        pst.setInt(2, id);
+        pst.execute();
+
+    }
 }
